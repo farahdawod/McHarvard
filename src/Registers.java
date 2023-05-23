@@ -21,8 +21,8 @@ public class Registers {
         return R;
     }
 
-    public static void setR(int[] r) {
-        R = r;
+    public static void setR(int address, int value) {
+        R[address] = value;
     }
 
     public static boolean[] getSREG() {
