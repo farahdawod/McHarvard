@@ -1,11 +1,11 @@
 public class DataMemory {
-    private static byte[] memory = new byte[2048]; //each row is 8 bits (1 byte)
+    private static int[] memory = new int[2048]; //each row is 8 bits (1 int)
 
-    public static byte[] getMemory() {
+    public static int[] getMemory() {
         return memory;
     }
 
-    public static void setMemory(byte[] memory) {
+    public static void setMemory(int[] memory) {
         DataMemory.memory = memory;
     }
 }

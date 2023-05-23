@@ -1,23 +1,27 @@
 public class Registers {
-    private static byte[] R = new byte[64]; //general purpose registers
+    private static int[] R = new int[64]; //general purpose registers
 
     private static boolean[] SREG = new boolean[] {false,false,false,false,false,false,false,false};
 
-    private static short pc = -1;
+    private static int pc = 0;
 
-    public static short getPc() {
+    public static int getPc() {
         return pc;
     }
 
-    public static void setPc(short pc) {
+    public static void setPc(int pc) {
         Registers.pc = pc;
     }
 
-    public static byte[] getR() {
+    public static void incrementPC(){
+        Registers.pc++;
+    }
+
+    public static int[] getR() {
         return R;
     }
 
-    public static void setR(byte[] r) {
+    public static void setR(int[] r) {
         R = r;
     }
 
