@@ -13,7 +13,5 @@ public class Datapath {
         int R1 = instruction & 0b0000111111000000;
         int R2 = 0;
         int immediate = 0;
-
-
     }
 }

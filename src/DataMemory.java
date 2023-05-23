@@ -5,7 +5,7 @@ public class DataMemory {
         return memory;
     }
 
-    public static void setMemory(int[] memory) {
-        DataMemory.memory = memory;
+    public static void setMemory(int address, int value) {
+        DataMemory.memory[address] = value;
     }
 }

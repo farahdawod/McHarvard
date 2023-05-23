@@ -5,7 +5,7 @@ public class InstructionMemory {
         return memory;
     }
 
-    public static void setMemory(int[] memory) {
-        InstructionMemory.memory = memory;
+    public static void setMemory(int address, int value) {
+        InstructionMemory.memory[address] = value;
     }
 }
