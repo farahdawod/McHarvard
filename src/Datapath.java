@@ -1,6 +1,5 @@
 public class Datapath {
-
-
+    int opcode;
     public int Fetch(){
         int instruction = InstructionMemory.getMemory()[Registers.getPc()];
         Registers.incrementPC();
@@ -8,7 +7,7 @@ public class Datapath {
     }
 
     public int[] Decode(int instruction){
-        int opcode = instruction & 0b1111000000000000;
+        opcode = instruction & 0b1111000000000000;
         int address1 = instruction & 0b0000111111000000;
         int address2 = instruction & 0b0000000000111111;
 
@@ -49,7 +48,45 @@ public class Datapath {
     }
 
     public void Execute(){
-
+        switch (opcode){
+            case 0:
+                //InstructionSetArchitecture.ADD(R1,R2);
+                break;
+            case 1:
+                //InstructionSetArchitecture.SUB(R1,R2);
+                break;
+            case 2:
+                //InstructionSetArchitecture.MUL(R1,R2);
+                break;
+            case 3:
+                //InstructionSetArchitecture.LDI(R1,IMM);
+                break;
+            case 4:
+                //InstructionSetArchitecture.BEQZ(R1,IMM);
+                break;
+            case 5:
+                //InstructionSetArchitecture.AND(R1,R2);
+                break;
+            case 6:
+                //InstructionSetArchitecture.OR(R1,R2);
+                break;
+            case 7:
+                //InstructionSetArchitecture.JR(R1,R2);
+                break;
+            case 8:
+                //InstructionSetArchitecture.SLC(R1,IMM);
+                break;
+            case 9:
+                //InstructionSetArchitecture.SRC(R1,IMM);
+                break;
+            case 10:
+                //InstructionSetArchitecture.LB(R1,ADDRESS);
+                break;
+            case 11:
+                //InstructionSetArchitecture.SB(R1,ADDRESS);
+                break;
+        }
     }
+
 }
 

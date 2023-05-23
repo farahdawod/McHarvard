@@ -1,22 +1,89 @@
 public class InstructionSetArchitecture {
     public static void ADD(int R1, int R2) {
-        Registers.setR(R1,(R1+R2));
+        int temp = R1 + R2;
+        if (temp == 0) {
+            Registers.setZero(true);
+        }
+        if(temp<0){
+            Registers.setNegative(true);
+        }
+        if (temp <= 255) {
+            Registers.setR(R1, temp);
+        }
+        else{
+            Registers.setOverflow(true);
+
+        }
+
+
     }
 
     public static void SUB(int R1, int R2) {
-        Registers.setR(R1, (R1 - R2));
+        int temp=R1 - R2;
+        if (temp == 0) {
+            Registers.setZero(true);
+        }
+        if(temp<0){
+            Registers.setNegative(true);
+        }
+        if (temp <= 255) {
+            Registers.setR(R1, temp);
+        }
+        else{
+            Registers.setOverflow(true);
+
+        }
     }
 
     public static void MUL(int R1, int R2) {
-        Registers.setR(R1, (R1 * R2));
+        int temp=R1*R2;
+        if (temp == 0) {
+            Registers.setZero(true);
+        }
+        if(temp<0){
+            Registers.setNegative(true);
+        }
+        if (temp <= 255) {
+            Registers.setR(R1, temp);
+        }
+        else{
+            Registers.setOverflow(true);
+
+        }
     }
 
     public static void AND(int R1, int R2) {
-        Registers.setR(R1, (R1 & R2));
+        int temp= R1&R2;
+        if (temp == 0) {
+            Registers.setZero(true);
+        }
+        if(temp<0){
+            Registers.setNegative(true);
+        }
+        if (temp <= 255) {
+            Registers.setR(R1, temp);
+        }
+        else{
+            Registers.setOverflow(true);
+
+        }
     }
 
     public static void OR(int R1, int R2) {
-        Registers.setR(R1, (R1 | R2));
+        int temp= R1|R2;
+        if (temp == 0) {
+            Registers.setZero(true);
+        }
+        if(temp<0){
+            Registers.setNegative(true);
+        }
+        if (temp <= 255) {
+            Registers.setR(R1, temp);
+        }
+        else{
+            Registers.setOverflow(true);
+
+        }
     }
 
     public static void JR(int R1, int R2) {
@@ -33,24 +100,30 @@ public class InstructionSetArchitecture {
             Registers.setPc(Registers.getPc() + 1 + IMM);
         }
     }
-    public static void SLC(int R1, int IMM){
-        Registers.setR(R1,R1 << IMM | R1 >>> 8 - IMM );
+
+    public static void SLC(int R1, int IMM) {
+        Registers.setR(R1, R1 << IMM | R1 >>> 8 - IMM);
     }
-    public static void SRC(int R1, int IMM){
-        Registers.setR(R1,R1 >>> IMM | R1 << 8 - IMM);
+
+    public static void SRC(int R1, int IMM) {
+        Registers.setR(R1, R1 >>> IMM | R1 << 8 - IMM);
     }
-    public static void LB (int R1,int ADDRESS){
+
+    public static void LB(int R1, int ADDRESS) {
         Registers.setR(R1, DataMemory.getMemory()[ADDRESS]);
     }
-    public static void SB (int R1,int ADDRESS){
-        DataMemory.setMemory(ADDRESS,R1);
+
+    public static void SB(int R1, int ADDRESS) {
+        DataMemory.setMemory(ADDRESS, R1);
     }
 
     public static void main(String args[]) {
-        int R1 = 30;
+        int R1 = 32;
         int R2 = 10;
-        int IMM =2;
-        int ADDRESS=22;
+        int IMM = 2;
+        int ADDRESS = 22;
+        //SB(R1,ADDRESS);
+        //LB(R1,ADDRESS);
         //ADD(R1,R2);
         //SUB(R1,R2);
         //MUL(R1,R2);
@@ -61,6 +134,7 @@ public class InstructionSetArchitecture {
         //System.out.println(Registers.getR()[R1]);
         //System.out.println(Registers.getPc());
         //System.out.println(R1);
+        // System.out.println(DataMemory.getMemory()[ADDRESS]);
     }
 
 }
