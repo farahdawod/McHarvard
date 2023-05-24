@@ -63,43 +63,50 @@ public class Datapath {
         return instructionArray;
     }
 
-    public void Execute(){
+
+    public void bta3(){
+        int instruction = Fetch();
+        int array[] = Decode(instruction);
+        Execute(array);
+
+    }
+    public void Execute(int[] array){
         switch (opcode){
             case 0:
-                InstructionSetArchitecture.ADD(instructionArray[2],instructionArray[4]);
+                InstructionSetArchitecture.ADD(array[1],array[4]);
                 break;
             case 1:
-                InstructionSetArchitecture.SUB(instructionArray[2],instructionArray[4]);
+                InstructionSetArchitecture.SUB(array[1],array[4]);
                 break;
             case 2:
-                InstructionSetArchitecture.MUL(instructionArray[2],instructionArray[4]);
+                InstructionSetArchitecture.MUL(array[1],array[4]);
                 break;
             case 3:
-                InstructionSetArchitecture.LDI(instructionArray[2],instructionArray[5]);
+                InstructionSetArchitecture.LDI(array[1],array[5]);
                 break;
             case 4:
-                InstructionSetArchitecture.BEQZ(instructionArray[2],instructionArray[5]);
+                InstructionSetArchitecture.BEQZ(array[2],array[5]);
                 break;
             case 5:
-                InstructionSetArchitecture.AND(instructionArray[2],instructionArray[4]);
+                InstructionSetArchitecture.AND(array[1],array[4]);
                 break;
             case 6:
-                InstructionSetArchitecture.OR(instructionArray[2],instructionArray[4]);
+                InstructionSetArchitecture.OR(array[1],array[4]);
                 break;
             case 7:
-                InstructionSetArchitecture.JR(instructionArray[2],instructionArray[4]);
+                InstructionSetArchitecture.JR(array[2],array[4]);
                 break;
             case 8:
-                InstructionSetArchitecture.SLC(instructionArray[2],instructionArray[4]);
+                InstructionSetArchitecture.SLC(array[1],array[5]);
                 break;
             case 9:
-                //InstructionSetArchitecture.SRC(R1,IMM);
+                InstructionSetArchitecture.SRC(array[1],array[5]);
                 break;
             case 10:
-                //InstructionSetArchitecture.LB(R1,ADDRESS);
+                InstructionSetArchitecture.LB(array[1],array[4]);
                 break;
             case 11:
-                //InstructionSetArchitecture.SB(R1,ADDRESS);
+                InstructionSetArchitecture.SB(array[2],array[3]);
                 break;
         }
     }
