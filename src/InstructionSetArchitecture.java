@@ -1,4 +1,5 @@
 public class InstructionSetArchitecture {
+
     public static void ADD(int R1, int R2) { //R1 add,R2 val
         int temp = Registers.getR()[R1] + R2;
         if (temp == 0) {
@@ -8,11 +9,10 @@ public class InstructionSetArchitecture {
             Registers.setNegative(true);
         }
         if (temp <= 255) {
-            Registers.setR(R1, temp);
+            Registers.setR(R1, (byte) temp);
         } else {
-            byte tempB = (byte) temp;
             Registers.setOverflow(true);
-            Registers.setR(R1, tempB);
+            Registers.setR(R1, (byte) temp);
         }
     }
 
@@ -25,11 +25,10 @@ public class InstructionSetArchitecture {
             Registers.setNegative(true);
         }
         if (temp <= 255) {
-            Registers.setR(R1, temp);
+            Registers.setR(R1, (byte) temp);
         } else {
-            byte tempB = (byte) temp;
             Registers.setOverflow(true);
-            Registers.setR(R1, tempB);
+            Registers.setR(R1, (byte) temp);
         }
     }
 
@@ -42,11 +41,10 @@ public class InstructionSetArchitecture {
             Registers.setNegative(true);
         }
         if (temp <= 255) {
-            Registers.setR(R1, temp);
+            Registers.setR(R1, (byte) temp);
         } else {
-            byte tempB = (byte) temp;
             Registers.setOverflow(true);
-            Registers.setR(R1, tempB);
+            Registers.setR(R1, (byte) temp);
         }
     }
 
@@ -59,11 +57,10 @@ public class InstructionSetArchitecture {
             Registers.setNegative(true);
         }
         if (temp <= 255) {
-            Registers.setR(R1, temp);
+            Registers.setR(R1, (byte) temp);
         } else {
-            byte tempB = (byte) temp;
             Registers.setOverflow(true);
-            Registers.setR(R1, tempB);
+            Registers.setR(R1, (byte) temp);
         }
     }
 
@@ -76,11 +73,10 @@ public class InstructionSetArchitecture {
             Registers.setNegative(true);
         }
         if (temp <= 255) {
-            Registers.setR(R1, temp);
+            Registers.setR(R1, (byte) temp);
         } else {
-            byte tempB = (byte) temp;
             Registers.setOverflow(true);
-            Registers.setR(R1, tempB);
+            Registers.setR(R1, (byte) temp);
         }
     }
 
@@ -89,29 +85,29 @@ public class InstructionSetArchitecture {
         Registers.setPc(Integer.parseInt(concatenation));
     }
 
-    public static void LDI(int R1, int IMM) { //R1 add, IMM val
+    public static void LDI(int R1, byte IMM) { //R1 add, IMM val
         Registers.setR(R1, IMM);
     }
 
-    public static void BEQZ(int R1, int IMM) { // R1 val, IMM val
+    public static void BEQZ(int R1, byte IMM) { // R1 val, IMM val
         if (R1 == 0) {
             Registers.setPc(Registers.getPc() + IMM);
         }
     }
 
-    public static void SLC(int R1, int IMM) { //R1 add, IMM val
-        Registers.setR(R1, Registers.getR()[R1] << IMM | Registers.getR()[R1] >>> 8 - IMM);
+    public static void SLC(int R1, byte IMM) { //R1 add, IMM val
+        Registers.setR(R1, (byte) (Registers.getR()[R1] << IMM | Registers.getR()[R1] >>> 8 - IMM));
     }
 
     public static void SRC(int R1, int IMM) { //R1 add, IMM val
-        Registers.setR(R1, Registers.getR()[R1] >>> IMM | Registers.getR()[R1] << 8 - IMM);
+        Registers.setR(R1, (byte) (Registers.getR()[R1] >>> IMM | Registers.getR()[R1] << 8 - IMM));
     }
 
-    public static void LB(int R1, int MEM) { //R1 add, MEM val
+    public static void LB(int R1, byte MEM) { //R1 add, MEM val
         Registers.setR(R1, MEM);
     }
 
-    public static void SB(int R1, int memADDRESS) { //R1 val, MEM add
+    public static void SB(byte R1, int memADDRESS) { //R1 val, MEM add
         DataMemory.setMemory(memADDRESS,R1);
     }
 

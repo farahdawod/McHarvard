@@ -1,11 +1,11 @@
 public class InstructionMemory {
-    private static int[] memory = new int[1024]; //each row id 16 bits (2 bytes)
+    private static short[] memory = new short[1024]; //each row id 16 bits (2 bytes)
 
-    public static int[] getMemory() {
+    public static short[] getMemory() {
         return memory;
     }
 
-    public static void setMemory(int address, int value) {
+    public static void setMemory(int address, short value) {
         InstructionMemory.memory[address] = value;
     }
 }

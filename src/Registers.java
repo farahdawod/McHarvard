@@ -1,5 +1,5 @@
 public class Registers {
-    private static int[] R = new int[64]; //general purpose registers
+    private static byte[] R = new byte[64]; //general purpose registers
 
     private static boolean[] SREG = new boolean[] {false,false,false,false,false,false,false,false};
 
@@ -17,11 +17,11 @@ public class Registers {
         Registers.pc++;
     }
 
-    public static int[] getR() {
+    public static byte[] getR() {
         return R;
     }
 
-    public static void setR(int address, int value) {
+    public static void setR(int address, byte value) {
         R[address] = value;
     }
 
