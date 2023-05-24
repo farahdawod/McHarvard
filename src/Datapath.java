@@ -103,6 +103,19 @@ public class Datapath {
                 break;
         }
     }
+    public void executepipeline(int numofins, int numofstages) {
+        int clkcycles = 3 + ((numofins - 1) * numofstages);
+        for (int cycle = 1; cycle <= clkcycles; cycle++) {
+
+        }
+
+
+    }
+
 
 }
+
+
+
+
 
