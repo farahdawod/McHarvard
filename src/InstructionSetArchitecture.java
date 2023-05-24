@@ -86,7 +86,7 @@ public class InstructionSetArchitecture {
     }
 
     public static void LDI(int R1, byte IMM) { //R1 add, IMM val
-        Registers.setR(R1, IMM);
+        Registers.setR(R1, IMM);//
     }
 
     public static void BEQZ(int R1, byte IMM) { // R1 val, IMM val
@@ -96,19 +96,19 @@ public class InstructionSetArchitecture {
     }
 
     public static void SLC(int R1, byte IMM) { //R1 add, IMM val
-        Registers.setR(R1, (byte) (Registers.getR()[R1] << IMM | Registers.getR()[R1] >>> 8 - IMM));
+        Registers.setR(R1, (byte) (Registers.getR()[R1] << IMM | Registers.getR()[R1] >>> 8 - IMM));//
     }
 
-    public static void SRC(int R1, int IMM) { //R1 add, IMM val
-        Registers.setR(R1, (byte) (Registers.getR()[R1] >>> IMM | Registers.getR()[R1] << 8 - IMM));
+    public static void SRC(int R1, byte IMM) { //R1 add, IMM val
+        Registers.setR(R1, (byte) (Registers.getR()[R1] >>> IMM | Registers.getR()[R1] << 8 - IMM));//
     }
 
     public static void LB(int R1, byte MEM) { //R1 add, MEM val
-        Registers.setR(R1, MEM);
+        Registers.setR(R1, MEM);//
     }
 
     public static void SB(byte R1, int memADDRESS) { //R1 val, MEM add
-        DataMemory.setMemory(memADDRESS,R1);
+        DataMemory.setMemory(memADDRESS,R1);//
     }
 
     public static void main(String args[]) {

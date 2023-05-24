@@ -53,17 +53,38 @@ public class Datapath {
 //    }
     public void Execute(int[] array){
         switch (array[0]){
-            case 0,1,2,5,6,10:
+            case 0:
                 InstructionSetArchitecture.ADD(array[1],array[4]);
                 break;
-            case 3,8,9:
+            case 1:
+                InstructionSetArchitecture.SUB(array[1],array[4]);
+                break;
+            case 2:
+                InstructionSetArchitecture.MUL(array[1],array[4]);
+                break;
+            case 3:
                 InstructionSetArchitecture.LDI(array[1],(byte) array[5]);
                 break;
             case 4:
                 InstructionSetArchitecture.BEQZ(array[2],(byte) array[5]);
                 break;
+            case 5:
+                InstructionSetArchitecture.AND(array[1],array[4]);
+                break;
+            case 6:
+                InstructionSetArchitecture.OR(array[1],array[4]);
+                break;
             case 7:
                 InstructionSetArchitecture.JR(array[2],array[4]);
+                break;
+            case 8:
+                InstructionSetArchitecture.SLC(array[1],(byte) array[5]);
+                break;
+            case 9:
+                InstructionSetArchitecture.SRC(array[1],(byte) array[5]);
+                break;
+            case 10:
+                InstructionSetArchitecture.LB(array[1], (byte) array[4]);
                 break;
             case 11:
                 InstructionSetArchitecture.SB((byte) array[2],array[3]);
