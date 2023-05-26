@@ -295,17 +295,27 @@ public class Datapath {
                 +array[4]+ "at register address "+ array[3] + "and stored in the PC register which is now: " + Registers.getPc());
                 break;
             case 8:
+
+                System.out.println("The value at register address " + array[1] + " is "+ array[2]);
                 InstructionSetArchitecture.SLC(array[1],(byte) array[5]);
+                System.out.println("The value at register address " + array[1]+ " is now "+ array[2]+
+                        " after circularly shifting it to the left with the immediate value "+ array[5]);
                 break;
             case 9:
+                System.out.println("The value at register address " + array[1] + " is "+ array[2]);
                 InstructionSetArchitecture.SRC(array[1],(byte) array[5]);
+                System.out.println("The value at register address " + array[1]+ " is now "+ array[2]+
+                        " after circularly shifting it to the right with the immediate value "+ array[5]);
                 break;
             case 10:
+                System.out.println("Value: " +DataMemory.getMemory()[array[3]] + " is stored in memory address "+ array[3]);
                 InstructionSetArchitecture.LB(array[1], (byte) array[4]);
                 System.out.println("Value: "+ array[4]+" was loaded from memory address: " +array[3]+ " to register address: "+ array[1]);
                 break;
             case 11:
+                System.out.println("Value: " +DataMemory.getMemory()[array[3]] + " is stored in memory address "+ array[3]);
                 InstructionSetArchitecture.SB((byte) array[2],array[3]);
+                System.out.println("Value:"+ array[2]+ " was stored from register address: "+array[1]+" to memory address: "+array[3] );
                 break;
         }
 
