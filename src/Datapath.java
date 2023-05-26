@@ -302,6 +302,7 @@ public class Datapath {
                 break;
             case 10:
                 InstructionSetArchitecture.LB(array[1], (byte) array[4]);
+                System.out.println("Value: "+ array[4]+" was loaded from memory address: " +array[3]+ " to register address: "+ array[1]);
                 break;
             case 11:
                 InstructionSetArchitecture.SB((byte) array[2],array[3]);
