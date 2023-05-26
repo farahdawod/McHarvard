@@ -1,5 +1,148 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class Datapath {
 
+    public static void readProgram(){
+        FileReader fileReader = null;
+        BufferedReader reader = null;
+        String line = "";
+
+        try {
+            fileReader = new FileReader("program1.txt");
+            reader = new BufferedReader(fileReader);
+            line = reader.readLine();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        while(line != null){
+            String instruction = "";
+            String[] values = line.split(" ");
+            String[] address1 = values[1].split("R");
+            String[] add2;
+            String temp;
+            switch (values[0]){
+                case "ADD":
+                    instruction += "0000";
+                    temp = Integer.toBinaryString((Integer.parseInt(address1[1]) + 64 ));
+                    instruction += temp.substring(1);
+                    add2 = values[2].split("R");
+                    temp = Integer.toBinaryString((Integer.parseInt(add2[1]) + 64 ));
+                    instruction += temp.substring(1);
+                    break;
+                case "SUB":
+                    instruction += "0001";
+                    temp = Integer.toBinaryString((Integer.parseInt(address1[1]) + 64 ));
+                    instruction += temp.substring(1);
+                    add2 = values[2].split("R");
+                    temp = Integer.toBinaryString((Integer.parseInt(add2[1]) + 64 ));
+                    instruction += temp.substring(1);
+                    break;
+                case "MUL":
+                    instruction += "0010";
+                    temp = Integer.toBinaryString((Integer.parseInt(address1[1]) + 64 ));
+                    instruction += temp.substring(1);
+                    add2 = values[2].split("R");
+                    temp = Integer.toBinaryString((Integer.parseInt(add2[1]) + 64 ));
+                    instruction += temp.substring(1);
+                    break;
+                case "LDI":
+                    instruction += "0011";
+                    temp = Integer.toBinaryString((Integer.parseInt(address1[1]) + 64 ));
+                    instruction += temp.substring(1);
+                    temp = Integer.toBinaryString(Integer.parseInt(values[2]) + 64);
+                    instruction += temp.substring(1);
+                    break;
+                case "BEQZ":
+                    instruction += "0100";
+                    temp = Integer.toBinaryString((Integer.parseInt(address1[1]) + 64 ));
+                    instruction += temp.substring(1);
+                    temp = Integer.toBinaryString(Integer.parseInt(values[2]) + 64);
+                    instruction += temp.substring(1);
+                    break;
+                case "AND":
+                    instruction += "0101";
+                    temp = Integer.toBinaryString((Integer.parseInt(address1[1]) + 64 ));
+                    instruction += temp.substring(1);
+                    add2 = values[2].split("R");
+                    temp = Integer.toBinaryString((Integer.parseInt(add2[1]) + 64 ));
+                    instruction += temp.substring(1);
+                    break;
+                case "OR":
+                    instruction += "0110";
+                    temp = Integer.toBinaryString((Integer.parseInt(address1[1]) + 64 ));
+                    instruction += temp.substring(1);
+                    add2 = values[2].split("R");
+                    temp = Integer.toBinaryString((Integer.parseInt(add2[1]) + 64 ));
+                    instruction += temp.substring(1);
+                    break;
+                case "JR":
+                    instruction += "0111";
+                    temp = Integer.toBinaryString((Integer.parseInt(address1[1]) + 64 ));
+                    instruction += temp.substring(1);
+                    add2 = values[2].split("R");
+                    temp = Integer.toBinaryString((Integer.parseInt(add2[1]) + 64 ));
+                    instruction += temp.substring(1);
+                    break;
+                case "SLC":
+                    instruction += "1000";
+                    temp = Integer.toBinaryString((Integer.parseInt(address1[1]) + 64 ));
+                    instruction += temp.substring(1);
+                    temp = Integer.toBinaryString(Integer.parseInt(values[2]) + 64);
+                    instruction += temp.substring(1);
+                    break;
+                case "SRC":
+                    instruction += "1001";
+                    temp = Integer.toBinaryString((Integer.parseInt(address1[1]) + 64 ));
+                    instruction += temp.substring(1);
+                    temp = Integer.toBinaryString(Integer.parseInt(values[2]) + 64);
+                    instruction += temp.substring(1);
+                    break;
+                case "LB":
+                    instruction += "1010";
+                    temp = Integer.toBinaryString((Integer.parseInt(address1[1]) + 64 ));
+                    instruction += temp.substring(1);
+                    //temp = Integer.parseInt(values[2], 2) + "";
+                    instruction += values[2];
+                    break;
+                case "SB":
+                    instruction += "1011";
+                    temp = Integer.toBinaryString((Integer.parseInt(address1[1]) + 64 ));
+                    instruction += temp.substring(1);
+                    instruction += values[2];
+                    break;
+                default: break;
+            }
+
+            for(int i = 0; i < 1024; i++){
+                if(InstructionMemory.getMemory()[i] == 0){
+                    //int test = Integer.parseInt(instruction,2);
+                    InstructionMemory.setMemory(i, (short) Integer.parseInt(instruction,2));
+                    break;
+                }
+            }
+
+            try {
+                line = reader.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        try {
+            fileReader.close();
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     public short Fetch(){
         short instruction = InstructionMemory.getMemory()[Registers.getPc()];
@@ -199,6 +342,10 @@ public class Datapath {
         Registers.printR();
         DataMemory.printMem();
         InstructionMemory.printMem();
+    }
+
+    public static void main(String[] args) {
+        Datapath.readProgram();
     }
 
 }
