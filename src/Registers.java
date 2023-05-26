@@ -79,6 +79,16 @@ public class Registers {
             System.out.println("Address: " + i + "| Value: " + R[i]);
         }
         System.out.println("-------------------------------");
+
+        System.out.println("Content of the flags: ");
+        System.out.println("Carry flag: " + getCarry());
+        System.out.println("Negative flag: " + getNegative());
+        System.out.println("Overflow flag: " + getOverflow());
+        System.out.println("Zero flag: " + getZero());
+        System.out.println("Sign Flag: " + getSign());
+        System.out.println("Program counter: " + getPc());
+
+        System.out.println("------------------------------");
     }
 
 }
