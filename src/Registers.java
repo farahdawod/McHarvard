@@ -58,12 +58,11 @@ public class Registers {
     }
 
     public static boolean getSign(){
-        Registers.setSign(SREG[4] ^ SREG[5]);
         return SREG[6];
     }
 
-    public static void setSign(boolean carry){
-        Registers.SREG[6] = carry;
+    public static void setSign(){
+        Registers.SREG[6] = SREG[4] ^ SREG[5];
     }
 
     public static boolean getZero(){
@@ -72,6 +71,14 @@ public class Registers {
 
     public static void setZero(boolean carry){
         Registers.SREG[7] = carry;
+    }
+
+    public static void printR(){
+        System.out.println("Content of each register is:");
+        for(int i = 0; i < 64; i++){
+            System.out.println("Address: " + i + "| Value: " + R[i]);
+        }
+        System.out.println("-------------------------------");
     }
 
 }

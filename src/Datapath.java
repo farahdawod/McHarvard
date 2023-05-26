@@ -1,9 +1,12 @@
 public class Datapath {
 
 
-    public int Fetch(){
-        int instruction = InstructionMemory.getMemory()[Registers.getPc()];
+    public short Fetch(){
+        short instruction = InstructionMemory.getMemory()[Registers.getPc()];
+        System.out.println("Program Counter: " + Registers.getPc() + "\n Used to fetch the instruction from the instruction memory");
         Registers.incrementPC();
+        System.out.println("Instruction: " + instruction + " is being fetched");
+        System.out.println("PC now: " + Registers.getPc() + "\n Fetching is finished");
         return instruction;
     }
 
@@ -12,34 +15,88 @@ public class Datapath {
         int address1 = instruction & 0b0000111111000000;
         int address2 = instruction & 0b0000000000111111;
 
-        int[] instructionArray = new int[] {opcode, 0, 0, 0, 0, 0};
-        //opcode, address1, value1, address2, value2, immediate
-        // 0    , 1       , 2     , 3       , 4     , 5
+        System.out.println("Instruction: " + instruction + " is being decoded");
+
+        switch (opcode){
+            case 0:
+                System.out.println("Opcode: ADD");
+                break;
+            case 1:
+                System.out.println("Opcode: SUB");
+                break;
+            case 2:
+                System.out.println("Opcode: MUL");
+                break;
+            case 3:
+                System.out.println("Opcode: LDI");
+                break;
+            case 4:
+                System.out.println("Opcode: BEQZ");
+                break;
+            case 5:
+                System.out.println("Opcode: AND");
+                break;
+            case 6:
+                System.out.println("Opcode: OR");
+                break;
+            case 7:
+                System.out.println("Opcode: JR");
+                break;
+            case 8:
+                System.out.println("Opcode: SLC");
+                break;
+            case 9:
+                System.out.println("Opcode: SRC");
+                break;
+            case 10:
+                System.out.println("Opcode: LB");
+                break;
+            case 11:
+                System.out.println("Opcode: SB");
+                break;
+            default: break;
+        }
+
+        int[] instructionArray = new int[] {opcode, 0, 0, 0, 0, 0, instruction};
+        //opcode, address1, value1, address2, value2, immediate, instruction
+        // 0    , 1       , 2     , 3       , 4     , 5        , 6
+
+        instructionArray[1] = address1;
+        instructionArray[3] = address2;
 
 
         switch(opcode){
             case 0,1,2,5,6,7:
                 instructionArray[2] = Registers.getR()[address1]; //v1
                 instructionArray[4] = Registers.getR()[address2]; //v2
+                System.out.println("Value 1 from Register " + address1 + ": " + instructionArray[2]);
+                System.out.println("Value 2 from Register " + address2 + ": " + instructionArray[4]);
                 break;
 
-
             case 3,4,8,9:
-                instructionArray[1] = address1;
+                //instructionArray[1] = address1;
                 instructionArray[5] = address2;
+                System.out.println("Register Address 1: " + address1);
+                System.out.println("Immediate value: " + address2);
                 break;
 
             case 10:
-                instructionArray[1] = address1;
+                //instructionArray[1] = address1;
                 instructionArray[4] = DataMemory.getMemory()[address2];
+                System.out.println("Register Address 1: " + address1);
+                System.out.println("Value 2 from memory address " + address2 + ": " + instructionArray[4]);
                 break;
 
             case 11:
                 instructionArray[2] = Registers.getR()[address1];
-                instructionArray[3] = address2;
+                //instructionArray[3] = address2;
+                System.out.println("Value 1 from register " + address1 + ": " + instructionArray[2]);
+                System.out.println("Memory address 2: " + address2);
 
             default: break;
         }
+
+        System.out.println("Decoding finished");
 
         return instructionArray;
     }
@@ -107,6 +164,8 @@ public class Datapath {
                 InstructionSetArchitecture.SB((byte) array[2],array[3]);
                 break;
         }
+
+        System.out.println("Instruction: " + array[6] + " is being executed");
     }
 
     public void executepipeline(int numofins) {

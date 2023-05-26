@@ -8,4 +8,12 @@ public class InstructionMemory {
     public static void setMemory(int address, short value) {
         InstructionMemory.memory[address] = value;
     }
+
+    public static void printMem(){
+        System.out.println("Content of each instruction memory is:");
+        for(int i = 0; i < 1024; i++){
+            System.out.println("Address: " + i + "| Value: " + memory[i]);
+        }
+        System.out.println("-------------------------------");
+    }
 }
