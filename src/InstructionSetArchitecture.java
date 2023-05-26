@@ -4,6 +4,7 @@ public class InstructionSetArchitecture {
         int temp = Registers.getR()[R1] + R2;
         if (temp == 0) {
             Registers.setZero(true);
+            Registers.setCarry(true);
         }
         if (temp < 0) {
             Registers.setNegative(true);
@@ -14,22 +15,27 @@ public class InstructionSetArchitecture {
             Registers.setOverflow(true);
             Registers.setR(R1, (byte) temp);
         }
+        Registers.setSign();
     }
 
     public static void SUB(int R1, int R2) { //R1 add,R2 val
-        int temp = Registers.getR()[R1] - R2;
-        if (temp == 0) {
+        byte tempByte = (byte) (Registers.getR()[R1] -  R2);
+        int tempInt = Registers.getR()[R1] - R2;
+
+        if(tempByte != tempInt) Registers.setOverflow(true);
+        if (tempByte == 0) {
             Registers.setZero(true);
         }
-        if (temp < 0) {
+        if (tempByte < 0) {
             Registers.setNegative(true);
         }
         if (temp <= 255) {
             Registers.setR(R1, (byte) temp);
         } else {
             Registers.setOverflow(true);
-            Registers.setR(R1, (byte) temp);
+            Registers.setR(R1, tempByte);
         }
+        Registers.setSign();
     }
 
     public static void MUL(int R1, int R2) { //R1 add,R2 val
@@ -111,9 +117,41 @@ public class InstructionSetArchitecture {
         DataMemory.setMemory(memADDRESS,R1);
     }
 
+//    public static String decimalToBinary(int decimal) {
+//        if (decimal == 0) {
+//            return "0";
+//        }
+//
+//        StringBuilder binary = new StringBuilder();
+//
+//        while (decimal > 0) {
+//            int remainder = decimal % 2;
+//            binary.insert(0, remainder);
+//            decimal /= 2;
+//        }
+//
+//        return binary.toString();
+//    }
+
+//    public static void Carry(int R1, int R2){
+//        String temp1 = decimalToBinary(R1);
+//        String temp2 = decimalToBinary(R2);
+//
+//        int temp1Int = Integer.parseInt(temp1)& 0x000000FF; //= 0b00000000000000000000000011111011;
+//        int temp2Int = Integer.parseInt(temp2)& 0x000000FF; //= 0b00000000000000000000000000000101;
+//
+//       if(((temp1Int + temp2Int) & 0b100000000) == 0b100000000) {
+//           Registers.setCarry(true);
+//       } else {
+//           Registers.setCarry(false);
+//       }
+//
+//    }
+
+
     public static void main(String args[]) {
-        int R1 = 2;
-        int R2 = 233;
+        int R1 = 22;
+        int R2 = -64;
         int IMM = 3;
         int ADDRESS = 22;
         byte least = (byte) 333;
@@ -122,7 +160,6 @@ public class InstructionSetArchitecture {
         //LB(R1,ADDRESS);
         //int[] a = new int[] {1, 2, 3, 4, 5, 6};
         //Datapath.setInstructionArray(a);
-        //ADD(R1, R2);
         //SUB(R1,R2);
         //MUL(R1,R2);
         //LDI(R1 , IMM);
