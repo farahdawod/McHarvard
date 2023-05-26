@@ -44,13 +44,6 @@ public class Datapath {
         return instructionArray;
     }
 
-
-//    public void bta3(){
-//        int instruction = Fetch();
-//        int array[] = Decode(instruction);
-//        Execute(array);
-//
-//    }
     public void Execute(int[] array){
         //opcode, address1, value1, address2, value2, immediate, instruction
         // 0    , 1       , 2     , 3       , 4     , 5        , 6
@@ -68,6 +61,7 @@ public class Datapath {
                         + "and the new value is " + array[2]);
                 break;
             case 2:
+                System.out.println("Register at address "+ array[1]+ "contained the value " + array[2]);
                 InstructionSetArchitecture.MUL(array[1],array[4]);
                 System.out.println(array[4] + "was multiplied to the value at register address " + array[1]
                         + "and the new value is " + array[2]);
@@ -83,10 +77,16 @@ public class Datapath {
                 InstructionSetArchitecture.BEQZ(array[2],(byte) array[5]);
                 break;
             case 5:
+                System.out.println("Register at address "+ array[1]+ "contained the value " + array[2]);
                 InstructionSetArchitecture.AND(array[1],array[4]);
+                System.out.println(array[4] + "was ANDed to the value at register address " + array[1]
+                        + "and the new value is " + array[2]);
                 break;
             case 6:
+                System.out.println("Register at address "+ array[1]+ "contained the value " + array[2]);
                 InstructionSetArchitecture.OR(array[1],array[4]);
+                System.out.println(array[4] + "was ORed to the value at register address " + array[1]
+                    + "and the new value is " + array[2]);
                 break;
             case 7:
                 System.out.println("The PC Register contained the value "+ Registers.getPc());

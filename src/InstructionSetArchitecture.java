@@ -97,7 +97,13 @@ public class InstructionSetArchitecture {
 
     public static void BEQZ(int R1, byte IMM) { // R1 val, IMM val
         if (R1 == 0) {
+            System.out.println("The value of the PC is: "+Registers.getPc());
             Registers.setPc(Registers.getPc() + IMM);
+            System.out.println("The value of the PC is now: "+Registers.getPc() +" after adding the immediate value "
+                    + IMM + " to it");
+        }
+        else{
+            System.out.println("Register value was not equal to zero, so the instruction wasn't carried out");
         }
     }
 
@@ -155,6 +161,34 @@ public class InstructionSetArchitecture {
         int IMM = 3;
         int ADDRESS = 22;
         byte least = (byte) 333;
+        byte r1= 64;
+        byte r2= 64;
+        int result= r1+ r2;
+        byte resByte = (byte) (r1+r2);
+        //System.out.println(result + "\n" + resByte);
+//        boolean flag= false;
+//
+////        String lRes = Integer.toBinaryString(result);
+//        int result1 = (result & 0b100000000);
+//
+//        if((result & 0b100000000) == 0b100000000) System.out.println(true);
+
+
+//        if((result & 0x100) == 0x100) flag = true;
+//        System.out.println(lRes);
+        //if((res & 0x100000000) == 0x100000000) flag = true;
+
+//        int carry7 = (result>>7)&1;
+//        int carry6 = (result>>6)&1;
+//        int overflow = (result>>7&1)^(result>>6&1);
+//
+//        boolean overflowB = ((r1 ^ r2) & (result ^ r1)) < 0;
+//
+//        if(overflow == 1)
+//                    flag= true;
+
+//        if(result < -128 || result > 127) flag = true;
+
         //System.out.println(least);
         //SB(R1,ADDRESS);
         //LB(R1,ADDRESS);
