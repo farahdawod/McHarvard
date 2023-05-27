@@ -4,7 +4,7 @@ public class InstructionSetArchitecture {
         byte tempByte = (byte) (Registers.getR()[R1] +  R2);
         int tempInt = Registers.getR()[R1] + R2;
 
-        if( ( ( (Registers.getR()[R1] & 0xFF) + (R2 & 0xFF)) & 0b100000000) == 0b100000000) Registers.setCarry(true);
+        if( ( ( (Registers.getR()[R1] & 0xFF) + (R2 & 0xFF)) & 0b100000000) == 0b100000000) Registers.setCarry(true);Registers.printFlags();
 
         if(tempByte != tempInt) Registers.setOverflow(true);
 
@@ -21,6 +21,7 @@ public class InstructionSetArchitecture {
         else {
             Registers.setOverflow(true);
             Registers.setR(R1, tempByte);
+            Registers.printFlags();
         }
         Registers.setSign();
     }
@@ -41,6 +42,7 @@ public class InstructionSetArchitecture {
         } else {
             Registers.setOverflow(true);
             Registers.setR(R1, tempByte);
+            Registers.printFlags();
         }
         Registers.setSign();
     }
@@ -65,9 +67,11 @@ public class InstructionSetArchitecture {
         int temp = Registers.getR()[R1] & R2;
         if (temp == 0) {
             Registers.setZero(true);
+            Registers.printFlags();
         }
         if (temp < 0) {
             Registers.setNegative(true);
+            Registers.printFlags();
         }
         if (temp <= 127 && temp >= -128) {
             Registers.setR(R1, (byte) temp);

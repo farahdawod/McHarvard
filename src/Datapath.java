@@ -154,8 +154,8 @@ public class Datapath {
     }
 
     public int[] Decode(short instruction){
-        int opcode = instruction & 0b1111000000000000;
-        int address1 = instruction & 0b0000111111000000;
+        int opcode = (instruction>>>12) & 0b1111;
+        int address1 = (instruction>>>6) & 0b0000111111;
         int address2 = instruction & 0b0000000000111111;
 
         System.out.println("Instruction: " + instruction + " is being decoded");
@@ -255,7 +255,7 @@ public class Datapath {
                                 + "and the new value is " + array[2]);
                 break;
             case 1:
-                System.out.println("Register at address "+ array[1]+ "contained the value " + array[2]);
+                System.out.println("Register at address "+ array[1]+ " contained the value " + array[2]);
                 InstructionSetArchitecture.SUB(array[1],array[4]);
                 System.out.println(array[4] + "was subtracted from the value at register address " + array[1]
                         + "and the new value is " + array[2]);
@@ -267,10 +267,10 @@ public class Datapath {
                         + "and the new value is " + array[2]);
                 break;
             case 3:
-                System.out.println("Register at address "+ array[1]+ "contained the value " + array[2]);
+                System.out.println("Register at address "+ array[1]+ " contained the value " + array[2]);
                 InstructionSetArchitecture.LDI(array[1],(byte) array[5]);
-                System.out.println(array[4] + "was loaded to the register at register address " + array[1]
-                        + "and the new value is " + array[2]);
+                System.out.println(array[5] + " was loaded to the register at register address " + array[1]
+                        + " and the new value is " + array[5]);
                 break;
             case 4:
                 System.out.println("Register at address "+ array[1]+ "contained the value " + array[2]);
@@ -323,12 +323,12 @@ public class Datapath {
     }
 
     public void executepipeline(int numofins) {
-        int clkcycles = 3 + ((numofins - 1) * 3);
+        int clkcycles = 3 + ((numofins - 1) * 1);
         short instruction = 0;
         int[] array = new int[6];
 
         for(int i = 0; i < clkcycles; i++) {
-            System.out.println("Clock cycle: " + i+1);
+            System.out.println("Clock cycle: " + (i+1));
 
             if(i == 0){
                 instruction = Fetch();
@@ -356,7 +356,9 @@ public class Datapath {
     }
 
     public static void main(String[] args) {
+        Datapath DP = new Datapath();
         Datapath.readProgram();
+        DP.executepipeline(13);
     }
 
 }
