@@ -329,7 +329,6 @@ public class Datapath {
 
         for(int i = 0; i < clkcycles; i++) {
             System.out.println("Clock cycle: " + (i+1));
-            //j=Registers.getPc();
             if(i == 0){
                 instruction = Fetch();
             }
@@ -338,17 +337,27 @@ public class Datapath {
                 instruction = Fetch();
             }
             else if(i == clkcycles - 2){
-                Execute(array);
+                if (i==j) Execute(array);
+                else {
+                    j--;
+                }
                 array = Decode(instruction);
             }
             else if(i == clkcycles - 1){
-                Execute(array);
+                if (i==j) Execute(array);
+                else {
+                    j--;
+                }
             }
             else{
-                Execute(array);
+                if (i==j) Execute(array);
+                else {
+                    j--;
+                }
                 array = Decode(instruction);
                 instruction = Fetch();
             }
+            if (i==j) j=Registers.getPc();
         }
         Registers.printR();
         DataMemory.printMem();
