@@ -8,15 +8,22 @@ public class InstructionSetArchitecture {
 
         if(tempByte != tempInt) Registers.setOverflow(true);
 
-        if (tempByte == 0) {
+        if (Registers.getR()[R1]==0 && R2==0){
+            Registers.setZero(true);
+            Registers.printFlags();
+        }
+        else if (tempByte == 0) {
             Registers.setZero(true);
             Registers.setCarry(true);
+            Registers.printFlags();
         }
-        if (tempByte < 0) {
+        else if (tempByte < 0) {
             Registers.setNegative(true);
+            Registers.printFlags();
         }
-        if (tempInt <= 127 && tempInt >= -128) {
+        else if (tempInt <= 127 && tempInt >= -128) {
             Registers.setR(R1, tempByte);
+
         }
         else {
             Registers.setOverflow(true);
@@ -33,9 +40,11 @@ public class InstructionSetArchitecture {
         if(tempByte != tempInt) Registers.setOverflow(true);
         if (tempByte == 0) {
             Registers.setZero(true);
+            Registers.printFlags();
         }
         if (tempByte < 0) {
             Registers.setNegative(true);
+            Registers.printFlags();
         }
         if (tempInt <= 127 && tempInt >= -128) {
             Registers.setR(R1,  tempByte);
@@ -51,15 +60,18 @@ public class InstructionSetArchitecture {
         int temp = Registers.getR()[R1] * R2;
         if (temp == 0) {
             Registers.setZero(true);
+            Registers.printFlags();
         }
         if (temp < 0) {
             Registers.setNegative(true);
+            Registers.printFlags();
         }
         if (temp <= 127 && temp >= -128) {
             Registers.setR(R1, (byte) temp);
         } else {
             Registers.setOverflow(true);
             Registers.setR(R1, (byte) temp);
+            Registers.printFlags();
         }
     }
 
@@ -85,15 +97,18 @@ public class InstructionSetArchitecture {
         int temp = Registers.getR()[R1] | R2;
         if (temp == 0) {
             Registers.setZero(true);
+            Registers.printFlags();
         }
         if (temp < 0) {
             Registers.setNegative(true);
+            Registers.printFlags();
         }
         if (temp <= 127 && temp >= -128) {
             Registers.setR(R1, (byte) temp);
         } else {
             Registers.setOverflow(true);
             Registers.setR(R1, (byte) temp);
+            Registers.printFlags();
         }
     }
 

@@ -58,6 +58,7 @@ public class Registers {
     }
 
     public static boolean getSign(){
+        if (SREG[6]) printFlags();
         return SREG[6];
     }
 
@@ -78,6 +79,19 @@ public class Registers {
         for(int i = 0; i < 64; i++){
             System.out.println("Address: " + i + "| Value: " + R[i]);
         }
+        System.out.println("-------------------------------");
+
+        System.out.println("Content of the flags: ");
+        System.out.println("Carry flag: " + getCarry());
+        System.out.println("Negative flag: " + getNegative());
+        System.out.println("Overflow flag: " + getOverflow());
+        System.out.println("Zero flag: " + getZero());
+        System.out.println("Sign Flag: " + getSign());
+        System.out.println("Program counter: " + getPc());
+
+        System.out.println("------------------------------");
+    }
+    public static void printFlags(){
         System.out.println("-------------------------------");
 
         System.out.println("Content of the flags: ");

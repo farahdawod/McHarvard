@@ -30,90 +30,90 @@ public class Datapath {
                 case "ADD":
                     instruction += "0000";
                     temp = Integer.toBinaryString((Integer.parseInt(address1[1]) + 64 ));
-                    instruction += temp.substring(1);
+                    instruction += temp.substring(temp.length()-6,temp.length());
                     add2 = values[2].split("R");
                     temp = Integer.toBinaryString((Integer.parseInt(add2[1]) + 64 ));
-                    instruction += temp.substring(1);
+                    instruction += temp.substring(temp.length()-6,temp.length());
                     break;
                 case "SUB":
                     instruction += "0001";
                     temp = Integer.toBinaryString((Integer.parseInt(address1[1]) + 64 ));
-                    instruction += temp.substring(1);
+                    instruction += temp.substring(temp.length()-6,temp.length());
                     add2 = values[2].split("R");
                     temp = Integer.toBinaryString((Integer.parseInt(add2[1]) + 64 ));
-                    instruction += temp.substring(1);
+                    instruction += temp.substring(temp.length()-6,temp.length());
                     break;
                 case "MUL":
                     instruction += "0010";
                     temp = Integer.toBinaryString((Integer.parseInt(address1[1]) + 64 ));
-                    instruction += temp.substring(1);
+                    instruction += temp.substring(temp.length()-6,temp.length());
                     add2 = values[2].split("R");
                     temp = Integer.toBinaryString((Integer.parseInt(add2[1]) + 64 ));
-                    instruction += temp.substring(1);
+                    instruction += temp.substring(temp.length()-6,temp.length());
                     break;
                 case "LDI":
                     instruction += "0011";
                     temp = Integer.toBinaryString((Integer.parseInt(address1[1]) + 64 ));
-                    instruction += temp.substring(1);
-                    temp = Integer.toBinaryString(Integer.parseInt(values[2]) + 64);
-                    instruction += temp.substring(1);
+                    instruction += temp.substring(temp.length()-6,temp.length());
+                    temp = String.format("%6s",Integer.toBinaryString(Integer.parseInt(values[2]) + 64)).replace(' ','0');
+                    instruction += temp.substring(temp.length()-6,temp.length());
                     break;
                 case "BEQZ":
                     instruction += "0100";
                     temp = Integer.toBinaryString((Integer.parseInt(address1[1]) + 64 ));
-                    instruction += temp.substring(1);
+                    instruction += temp.substring(temp.length()-6,temp.length());
                     temp = Integer.toBinaryString(Integer.parseInt(values[2]) + 64);
-                    instruction += temp.substring(1);
+                    instruction += temp.substring(temp.length()-6,temp.length());
                     break;
                 case "AND":
                     instruction += "0101";
                     temp = Integer.toBinaryString((Integer.parseInt(address1[1]) + 64 ));
-                    instruction += temp.substring(1);
+                    instruction += temp.substring(temp.length()-6,temp.length());
                     add2 = values[2].split("R");
                     temp = Integer.toBinaryString((Integer.parseInt(add2[1]) + 64 ));
-                    instruction += temp.substring(1);
+                    instruction += temp.substring(temp.length()-6,temp.length());
                     break;
                 case "OR":
                     instruction += "0110";
                     temp = Integer.toBinaryString((Integer.parseInt(address1[1]) + 64 ));
-                    instruction += temp.substring(1);
+                    instruction += temp.substring(temp.length()-6,temp.length());
                     add2 = values[2].split("R");
                     temp = Integer.toBinaryString((Integer.parseInt(add2[1]) + 64 ));
-                    instruction += temp.substring(1);
+                    instruction += temp.substring(temp.length()-6,temp.length());
                     break;
                 case "JR":
                     instruction += "0111";
                     temp = Integer.toBinaryString((Integer.parseInt(address1[1]) + 64 ));
-                    instruction += temp.substring(1);
+                    instruction += temp.substring(temp.length()-6,temp.length());
                     add2 = values[2].split("R");
                     temp = Integer.toBinaryString((Integer.parseInt(add2[1]) + 64 ));
-                    instruction += temp.substring(1);
+                    instruction += temp.substring(temp.length()-6,temp.length());
                     break;
                 case "SLC":
                     instruction += "1000";
                     temp = Integer.toBinaryString((Integer.parseInt(address1[1]) + 64 ));
-                    instruction += temp.substring(1);
+                    instruction += temp.substring(temp.length()-6,temp.length());
                     temp = Integer.toBinaryString(Integer.parseInt(values[2]) + 64);
-                    instruction += temp.substring(1);
+                    instruction += temp.substring(temp.length()-6,temp.length());
                     break;
                 case "SRC":
                     instruction += "1001";
                     temp = Integer.toBinaryString((Integer.parseInt(address1[1]) + 64 ));
-                    instruction += temp.substring(1);
+                    instruction += temp.substring(temp.length()-6,temp.length());
                     temp = Integer.toBinaryString(Integer.parseInt(values[2]) + 64);
-                    instruction += temp.substring(1);
+                    instruction += temp.substring(temp.length()-6,temp.length());
                     break;
                 case "LB":
                     instruction += "1010";
                     temp = Integer.toBinaryString((Integer.parseInt(address1[1]) + 64 ));
-                    instruction += temp.substring(1);
+                    instruction += temp.substring(temp.length()-6,temp.length());
                     //temp = Integer.parseInt(values[2], 2) + "";
                     instruction += values[2];
                     break;
                 case "SB":
                     instruction += "1011";
                     temp = Integer.toBinaryString((Integer.parseInt(address1[1]) + 64 ));
-                    instruction += temp.substring(1);
+                    instruction += temp.substring(temp.length()-6,temp.length());
                     instruction += values[2];
                     break;
                 default: break;
@@ -148,7 +148,7 @@ public class Datapath {
         short instruction = InstructionMemory.getMemory()[Registers.getPc()];
         System.out.println("Program Counter: " + Registers.getPc() + "\n Used to fetch the instruction from the instruction memory");
         Registers.incrementPC();
-        System.out.println("Instruction: " + instruction + " is being fetched");
+        System.out.println("Instruction: " + String.format("%16s",Integer.toBinaryString(instruction & 0xFFFF)).replace(' ','0') + " is being fetched");
         System.out.println("PC now: " + Registers.getPc() + "\n Fetching is finished");
         return instruction;
     }
@@ -158,7 +158,7 @@ public class Datapath {
         int address1 = (instruction>>>6) & 0b0000111111;
         int address2 = instruction & 0b0000000000111111;
 
-        System.out.println("Instruction: " + instruction + " is being decoded");
+        System.out.println("Instruction: " + String.format("%16s",Integer.toBinaryString(instruction & 0xFFFF)).replace(' ','0') + " is being decoded");
 
         switch (opcode){
             case 0:
@@ -219,15 +219,15 @@ public class Datapath {
             case 3,4,8,9:
                 //instructionArray[1] = address1;
                 instructionArray[5] = address2;
-                System.out.println("Register Address 1: " + address1);
+                System.out.println("Register Address: " + address1);
                 System.out.println("Immediate value: " + address2);
                 break;
 
             case 10:
                 //instructionArray[1] = address1;
                 instructionArray[4] = DataMemory.getMemory()[address2];
-                System.out.println("Register Address 1: " + address1);
-                System.out.println("Value 2 from memory address " + address2 + ": " + instructionArray[4]);
+                System.out.println("Destination Register Address : " + address1);
+                System.out.println("Memory address to get value from:  " + address2 );
                 break;
 
             case 11:
@@ -249,22 +249,22 @@ public class Datapath {
         // 0    , 1       , 2     , 3       , 4     , 5        , 6
         switch (array[0]){
             case 0:
-                System.out.println("Register at address "+ array[1]+ "contained the value " + array[2]);
+                System.out.println("Register at address "+ array[1]+ " contained the value " + array[2]);
                 InstructionSetArchitecture.ADD(array[1],array[4]);
-                System.out.println(array[4] + "was added to the value at register address " + array[1]
-                                + "and the new value is " + array[2]);
+                System.out.println(array[4] + " which is the value at register address " + array[3]+ " was added to the value at register address " + array[1]
+                                + " and the new value is " + array[2]);
                 break;
             case 1:
                 System.out.println("Register at address "+ array[1]+ " contained the value " + array[2]);
                 InstructionSetArchitecture.SUB(array[1],array[4]);
-                System.out.println(array[4] + "was subtracted from the value at register address " + array[1]
-                        + "and the new value is " + array[2]);
+                System.out.println(array[4]+ " which is the value at register address " + array[3] + " was subtracted from the value at register address " + array[1]
+                        + " and the new value is " + array[2]);
                 break;
             case 2:
                 System.out.println("Register at address "+ array[1]+ "contained the value " + array[2]);
                 InstructionSetArchitecture.MUL(array[1],array[4]);
-                System.out.println(array[4] + "was multiplied to the value at register address " + array[1]
-                        + "and the new value is " + array[2]);
+                System.out.println(array[4]+ " which is the value at register address " + array[3] + " was multiplied to the value at register address " + array[1]
+                        + " and the new value is " + array[2]);
                 break;
             case 3:
                 System.out.println("Register at address "+ array[1]+ " contained the value " + array[2]);
@@ -308,18 +308,18 @@ public class Datapath {
                         " after circularly shifting it to the right with the immediate value "+ array[5]);
                 break;
             case 10:
-                System.out.println("Value: " +DataMemory.getMemory()[array[3]] + " is stored in memory address "+ array[3]);
+                System.out.println("Value " +DataMemory.getMemory()[array[3]] + " is stored in MEMORY["+ array[3]+"]");
                 InstructionSetArchitecture.LB(array[1], (byte) array[4]);
-                System.out.println("Value: "+ array[4]+" was loaded from memory address: " +array[3]+ " to register address: "+ array[1]);
+                System.out.println("Value "+ array[4]+" was loaded from MEMORY[" +array[3]+ "] to register address ["+ array[1]+"]");
                 break;
             case 11:
-                System.out.println("Value: " +DataMemory.getMemory()[array[3]] + " is stored in memory address "+ array[3]);
+                System.out.println("Value " +DataMemory.getMemory()[array[3]] + " is stored in MEMORY["+ array[3]+"]");
                 InstructionSetArchitecture.SB((byte) array[2],array[3]);
-                System.out.println("Value:"+ array[2]+ " was stored from register address: "+array[1]+" to memory address: "+array[3] );
+                System.out.println("Value "+ array[2]+ " was stored from register address ["+array[1]+"] to MEMORY["+array[3]+"]" );
                 break;
         }
 
-        System.out.println("Instruction: " + array[6] + " is being executed");
+        System.out.println("Instruction: " + array[6] + " executed");
     }
 
     public void executepipeline(int numofins) {
