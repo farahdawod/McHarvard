@@ -4,6 +4,7 @@ public class InstructionSetArchitecture {
         byte tempByte = (byte) (Registers.getR()[R1] +  R2);
         int tempInt = Registers.getR()[R1] + R2;
 
+
         if( ( ( (Registers.getR()[R1] & 0xFF) + (R2 & 0xFF)) & 0b100000000) == 0b100000000) Registers.setCarry(true);Registers.printFlags();
 
         if(tempByte != tempInt) Registers.setOverflow(true);
@@ -17,7 +18,7 @@ public class InstructionSetArchitecture {
             Registers.setCarry(true);
             Registers.printFlags();
         }
-        else if (tempByte < 0) {
+        else if (tempInt < 0) {
             Registers.setNegative(true);
             Registers.printFlags();
         }
@@ -25,11 +26,8 @@ public class InstructionSetArchitecture {
             Registers.setR(R1, tempByte);
 
         }
-        else {
-            Registers.setOverflow(true);
-            Registers.setR(R1, tempByte);
-            Registers.printFlags();
-        }
+
+        Registers.setR(R1, tempByte);
         Registers.setSign();
     }
 
@@ -124,7 +122,7 @@ public class InstructionSetArchitecture {
     public static void BEQZ(int R1, byte IMM) { // R1 val, IMM val
         if (R1 == 0) {
             System.out.println("The value of the PC is: "+Registers.getPc());
-            Registers.setPc(Registers.getPc() + IMM);
+            Registers.setPc(Registers.getPc() + IMM + 1);
             System.out.println("The value of the PC is now: "+Registers.getPc() +" after adding the immediate value "
                     + IMM + " to it");
         }

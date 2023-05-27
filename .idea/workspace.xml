@@ -5,10 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25b1853d-4519-4c0e-8ed9-b0236acd9ec3" name="Changes" comment="start">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Project.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/McHarvard.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Datapath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Datapath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/InstructionSetArchitecture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InstructionSetArchitecture.java" afterDir="false" />
+    </list>
+    <list id="7ad827b3-1412-435c-bbc3-1d5781268b3d" name="Changes by Mayar" comment="" />
+    <list id="0f73b6cf-ac83-43db-9c60-3286865333c1" name="Changes by Sara" comment="" />
+    <list id="f59e935d-5f4b-4141-a76b-b314a1387b85" name="Changes by zeina" comment="">
+      <change beforePath="$PROJECT_DIR$/src/Datapath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Datapath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/InstructionSetArchitecture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InstructionSetArchitecture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Registers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Registers.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +31,48 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="0c24abdf-ebbf-45e7-b1dd-8a3a6da5c7af" />
+        <option name="url" value="https://github.com/farahdawod/McHarvard.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/Datapath.java">
+      <ranges>
+        <range start1="159" end1="159" start2="159" end2="160" changelist="25b1853d-4519-4c0e-8ed9-b0236acd9ec3" />
+        <range start1="249" end1="271" start2="250" end2="272" changelist="25b1853d-4519-4c0e-8ed9-b0236acd9ec3" />
+        <range start1="273" end1="281" start2="274" end2="282" changelist="25b1853d-4519-4c0e-8ed9-b0236acd9ec3" />
+        <range start1="283" end1="287" start2="284" end2="288" changelist="25b1853d-4519-4c0e-8ed9-b0236acd9ec3" />
+        <range start1="288" end1="311" start2="289" end2="311" changelist="25b1853d-4519-4c0e-8ed9-b0236acd9ec3" />
+        <range start1="312" end1="319" start2="312" end2="319" changelist="25b1853d-4519-4c0e-8ed9-b0236acd9ec3" />
+        <range start1="321" end1="322" start2="321" end2="322" changelist="25b1853d-4519-4c0e-8ed9-b0236acd9ec3" />
+        <range start1="328" end1="328" start2="328" end2="329" changelist="f59e935d-5f4b-4141-a76b-b314a1387b85" />
+        <range start1="331" end1="332" start2="332" end2="333" changelist="25b1853d-4519-4c0e-8ed9-b0236acd9ec3" />
+        <range start1="340" end1="341" start2="341" end2="342" changelist="25b1853d-4519-4c0e-8ed9-b0236acd9ec3" />
+        <range start1="344" end1="345" start2="345" end2="346" changelist="25b1853d-4519-4c0e-8ed9-b0236acd9ec3" />
+        <range start1="347" end1="348" start2="348" end2="349" changelist="25b1853d-4519-4c0e-8ed9-b0236acd9ec3" />
+        <range start1="360" end1="361" start2="361" end2="362" changelist="25b1853d-4519-4c0e-8ed9-b0236acd9ec3" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/InstructionSetArchitecture.java">
+      <ranges>
+        <range start1="5" end1="5" start2="5" end2="6" changelist="25b1853d-4519-4c0e-8ed9-b0236acd9ec3" />
+        <range start1="19" end1="20" start2="20" end2="21" changelist="25b1853d-4519-4c0e-8ed9-b0236acd9ec3" />
+        <range start1="23" end1="25" start2="24" end2="24" changelist="f59e935d-5f4b-4141-a76b-b314a1387b85" />
+        <range start1="26" end1="26" start2="25" end2="29" changelist="f59e935d-5f4b-4141-a76b-b314a1387b85" />
+        <range start1="27" end1="32" start2="30" end2="32" changelist="25b1853d-4519-4c0e-8ed9-b0236acd9ec3" />
+        <range start1="126" end1="127" start2="126" end2="127" changelist="25b1853d-4519-4c0e-8ed9-b0236acd9ec3" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -41,12 +90,29 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "last_opened_file_path": "C:/Users/Mayar/OneDrive - student.guc.edu.eg/Documents/UNI/SEM6/Computer Architecture/Project",
-    "project.structure.last.edited": "Modules",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
   <component name="RunManager">
+    <configuration name="Datapath" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Datapath" />
+      <module name="Project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -58,6 +124,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Datapath" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -67,6 +138,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1684797361242</updated>
+      <workItem from="1685213478956" duration="7091000" />
     </task>
     <task id="LOCAL-00001" summary="start">
       <created>1684797994349</created>
@@ -77,6 +149,9 @@
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -92,5 +167,21 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="start" />
     <option name="LAST_COMMIT_MESSAGE" value="start" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Datapath.java</url>
+          <line>361</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Datapath.java</url>
+          <line>276</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

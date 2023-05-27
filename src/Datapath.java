@@ -157,6 +157,7 @@ public class Datapath {
         int opcode = (instruction>>>12) & 0b1111;
         int address1 = (instruction>>>6) & 0b0000111111;
         int address2 = instruction & 0b0000000000111111;
+        if (address2>31) address2=address2-64;
 
         System.out.println("Instruction: " + String.format("%16s",Integer.toBinaryString(instruction & 0xFFFF)).replace(' ','0') + " is being decoded");
 
@@ -247,79 +248,78 @@ public class Datapath {
     public void Execute(int[] array){
         //opcode, address1, value1, address2, value2, immediate, instruction
         // 0    , 1       , 2     , 3       , 4     , 5        , 6
-        switch (array[0]){
-            case 0:
-                System.out.println("Register at address "+ array[1]+ " contained the value " + array[2]);
-                InstructionSetArchitecture.ADD(array[1],array[4]);
-                System.out.println(array[4] + " which is the value at register address " + array[3]+ " was added to the value at register address " + array[1]
-                                + " and the new value is " + array[2]);
-                break;
-            case 1:
-                System.out.println("Register at address "+ array[1]+ " contained the value " + array[2]);
-                InstructionSetArchitecture.SUB(array[1],array[4]);
-                System.out.println(array[4]+ " which is the value at register address " + array[3] + " was subtracted from the value at register address " + array[1]
-                        + " and the new value is " + array[2]);
-                break;
-            case 2:
-                System.out.println("Register at address "+ array[1]+ "contained the value " + array[2]);
-                InstructionSetArchitecture.MUL(array[1],array[4]);
-                System.out.println(array[4]+ " which is the value at register address " + array[3] + " was multiplied to the value at register address " + array[1]
-                        + " and the new value is " + array[2]);
-                break;
-            case 3:
-                System.out.println("Register at address "+ array[1]+ " contained the value " + array[2]);
-                InstructionSetArchitecture.LDI(array[1],(byte) array[5]);
+        switch (array[0]) {
+            case 0 -> {
+                System.out.println("Register at address " + array[1] + " contained the value " + array[2]);
+                InstructionSetArchitecture.ADD(array[1], array[4]);
+                System.out.println(array[4] + " which is the value at register address " + array[3] + " was added to the value at register address " + array[1]
+                        + " and the new value is " + Registers.getR()[array[1]]);
+            }
+            case 1 -> {
+                System.out.println("Register at address " + array[1] + " contained the value " + array[2]);
+                InstructionSetArchitecture.SUB(array[1], array[4]);
+                System.out.println(array[4] + " which is the value at register address " + array[3] + " was subtracted from the value at register address " + array[1]
+                        + " and the new value is " + Registers.getR()[array[1]]);
+            }
+            case 2 -> {
+                System.out.println("Register at address " + array[1] + "contained the value " + array[2]);
+                InstructionSetArchitecture.MUL(array[1], array[4]);
+                System.out.println(array[4] + " which is the value at register address " + array[3] + " was multiplied to the value at register address " + array[1]
+                        + " and the new value is " + Registers.getR()[array[1]]);
+            }
+            case 3 -> {
+                System.out.println("Register at address " + array[1] + " contained the value " + array[2]);
+                InstructionSetArchitecture.LDI(array[1], (byte) array[5]);
                 System.out.println(array[5] + " was loaded to the register at register address " + array[1]
                         + " and the new value is " + array[5]);
-                break;
-            case 4:
-                System.out.println("Register at address "+ array[1]+ "contained the value " + array[2]);
-                InstructionSetArchitecture.BEQZ(array[2],(byte) array[5]);
-                break;
-            case 5:
-                System.out.println("Register at address "+ array[1]+ "contained the value " + array[2]);
-                InstructionSetArchitecture.AND(array[1],array[4]);
+            }
+            case 4 -> {
+                System.out.println("Register at address " + array[1] + " contained the value " + array[2]);
+                InstructionSetArchitecture.BEQZ(array[2], (byte) array[5]);
+            }
+            case 5 -> {
+                System.out.println("Register at address " + array[1] + " contained the value " + array[2]);
+                InstructionSetArchitecture.AND(array[1], array[4]);
                 System.out.println(array[4] + "was ANDed to the value at register address " + array[1]
                         + "and the new value is " + array[2]);
-                break;
-            case 6:
-                System.out.println("Register at address "+ array[1]+ "contained the value " + array[2]);
-                InstructionSetArchitecture.OR(array[1],array[4]);
+            }
+            case 6 -> {
+                System.out.println("Register at address " + array[1] + " contained the value " + array[2]);
+                InstructionSetArchitecture.OR(array[1], array[4]);
                 System.out.println(array[4] + "was ORed to the value at register address " + array[1]
-                    + "and the new value is " + array[2]);
-                break;
-            case 7:
-                System.out.println("The PC Register contained the value "+ Registers.getPc());
-                InstructionSetArchitecture.JR(array[2],array[4]);
-                System.out.println("The value" +array[2]+" at register address "+ array[1]+ "was concatenated to the value "
-                +array[4]+ "at register address "+ array[3] + "and stored in the PC register which is now: " + Registers.getPc());
-                break;
-            case 8:
-
-                System.out.println("The value at register address " + array[1] + " is "+ array[2]);
-                InstructionSetArchitecture.SLC(array[1],(byte) array[5]);
-                System.out.println("The value at register address " + array[1]+ " is now "+ array[2]+
-                        " after circularly shifting it to the left with the immediate value "+ array[5]);
-                break;
-            case 9:
-                System.out.println("The value at register address " + array[1] + " is "+ array[2]);
-                InstructionSetArchitecture.SRC(array[1],(byte) array[5]);
-                System.out.println("The value at register address " + array[1]+ " is now "+ array[2]+
-                        " after circularly shifting it to the right with the immediate value "+ array[5]);
-                break;
-            case 10:
-                System.out.println("Value " +DataMemory.getMemory()[array[3]] + " is stored in MEMORY["+ array[3]+"]");
+                        + "and the new value is " + array[2]);
+            }
+            case 7 -> {
+                System.out.println("The PC Register contained the value " + Registers.getPc());
+                InstructionSetArchitecture.JR(array[2], array[4]);
+                System.out.println("The value " + array[2] + " at register address " + array[1] + " was concatenated to the value "
+                        + array[4] + " at register address " + array[3] + " and stored in the PC register which is now: " + Registers.getPc());
+            }
+            case 8 -> {
+                System.out.println("The value at register address " + array[1] + " is " + array[2]);
+                InstructionSetArchitecture.SLC(array[1], (byte) array[5]);
+                System.out.println("The value at register address " + array[1] + " is now " + array[2] +
+                        " after circularly shifting it to the left with the immediate value " + array[5]);
+            }
+            case 9 -> {
+                System.out.println("The value at register address " + array[1] + " is " + array[2]);
+                InstructionSetArchitecture.SRC(array[1], (byte) array[5]);
+                System.out.println("The value at register address " + array[1] + " is now " + array[2] +
+                        " after circularly shifting it to the right with the immediate value " + array[5]);
+            }
+            case 10 -> {
+                System.out.println("Value " + DataMemory.getMemory()[array[3]] + " is stored in MEMORY[" + array[3] + "]");
                 InstructionSetArchitecture.LB(array[1], (byte) array[4]);
-                System.out.println("Value "+ array[4]+" was loaded from MEMORY[" +array[3]+ "] to register address ["+ array[1]+"]");
-                break;
-            case 11:
-                System.out.println("Value " +DataMemory.getMemory()[array[3]] + " is stored in MEMORY["+ array[3]+"]");
-                InstructionSetArchitecture.SB((byte) array[2],array[3]);
-                System.out.println("Value "+ array[2]+ " was stored from register address ["+array[1]+"] to MEMORY["+array[3]+"]" );
-                break;
+                System.out.println("Value " + array[4] + " was loaded from MEMORY[" + array[3] + "] to register address [" + array[1] + "]");
+            }
+            case 11 -> {
+                System.out.println("Value " + DataMemory.getMemory()[array[3]] + " is stored in MEMORY[" + array[3] + "]");
+                InstructionSetArchitecture.SB((byte) array[2], array[3]);
+                System.out.println("Value " + array[2] + " was stored from register address [" + array[1] + "] to MEMORY[" + array[3] + "]");
+            }
         }
 
-        System.out.println("Instruction: " + array[6] + " executed");
+        System.out.println("Instruction: " + String.format("%16s",Integer.toBinaryString(array[6] & 0xFFFF)).replace(' ','0') + " executed");
     }
 
     public void executepipeline(int numofins) {
@@ -329,7 +329,7 @@ public class Datapath {
 
         for(int i = 0; i < clkcycles; i++) {
             System.out.println("Clock cycle: " + (i+1));
-
+            //j=Registers.getPc();
             if(i == 0){
                 instruction = Fetch();
             }
@@ -358,7 +358,7 @@ public class Datapath {
     public static void main(String[] args) {
         Datapath DP = new Datapath();
         Datapath.readProgram();
-        DP.executepipeline(13);
+        DP.executepipeline(10);
     }
 
 }
